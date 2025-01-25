@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>938</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>938</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew_Wallet"/>
+    <addaction name="actionOpen_Wallet"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuMarket">
+    <property name="title">
+     <string>Market</string>
+    </property>
+    <widget class="QMenu" name="menuNew_Order">
+     <property name="title">
+      <string>New Order</string>
+     </property>
+     <widget class="QMenu" name="menuOption">
+      <property name="title">
+       <string>Option</string>
+      </property>
+      <addaction name="actionVanillaCall"/>
+      <addaction name="actionVanillaPut"/>
+     </widget>
+     <addaction name="menuOption"/>
+     <addaction name="actionFuture"/>
+    </widget>
+    <addaction name="actionOrder_book"/>
+    <addaction name="menuNew_Order"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuMarket"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Wallet">
+   <property name="text">
+    <string>New Wallet</string>
+   </property>
+  </action>
+  <action name="actionOpen_Wallet">
+   <property name="text">
+    <string>Open Wallet</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionRegister">
+   <property name="text">
+    <string>Register</string>
+   </property>
+  </action>
+  <action name="actionLogin">
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </action>
+  <action name="actionOrder_book">
+   <property name="text">
+    <string>Order book</string>
+   </property>
+  </action>
+  <action name="actionFuture">
+   <property name="text">
+    <string>Future</string>
+   </property>
+  </action>
+  <action name="actionVanillaCall">
+   <property name="text">
+    <string>VanillaCall</string>
+   </property>
+  </action>
+  <action name="actionVanillaPut">
+   <property name="text">
+    <string>VanillaPut</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNew_Wallet</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>new_wallet()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen_Wallet</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_wallet()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOrder_book</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_market_window()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>new_wallet()</slot>
+  <slot>open_wallet()</slot>
+  <slot>open_market_window()</slot>
+  <slot>open_new_order_future()</slot>
+ </slots>
+</ui>
