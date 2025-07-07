@@ -1,6 +1,6 @@
 # DLC Wallet
 
-This project implements a Bitcoin Wallet written wit C++. It includes integration with the `libwally-core` library and can be connected to a DLC contract oracle.
+This project implements a C++ Bitcoin Wallet. It includes integration with the `libwally-core` library and can be connected to a DLC contract oracle.
 
 ## 🔧 Linux Manual Setup Guide
 
