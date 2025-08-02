@@ -231,21 +231,21 @@ vector<Order> CurlRPC::get_all_orders(){
                     orderJson["strike"].get<string>(),
                     orderJson["price"].get<string>()
                 };
-                Counterpart creator = {};
-                Counterpart buyer = {};
-                if(orderJson["role"].get<string>() == "creator"){
-                    creator.id = orderJson["counterpart_id"].get<uint32_t>();
-                    creator.role = orderJson["role"].get<string>();
-                    creator.collateral = orderJson["collateral"].get<string>();
-                    creator.pubkey = orderJson["pubkey"].get<string>();
+                Counterpart maker = {};
+                Counterpart taker = {};
+                if(orderJson["role"].get<string>() == "maker"){
+                    maker.id = orderJson["counterpart_id"].get<uint32_t>();
+                    maker.role = orderJson["role"].get<string>();
+                    maker.collateral = orderJson["collateral"].get<string>();
+                    maker.pubkey = orderJson["pubkey"].get<string>();
                 } else {
-                    buyer.id = orderJson["counterpart_id"].get<uint32_t>();
-                    buyer.role = orderJson["role"].get<string>();
-                    buyer.collateral = orderJson["collateral"].get<string>();
-                    buyer.pubkey = orderJson["pubkey"].get<string>();
+                    taker.id = orderJson["counterpart_id"].get<uint32_t>();
+                    taker.role = orderJson["role"].get<string>();
+                    taker.collateral = orderJson["collateral"].get<string>();
+                    taker.pubkey = orderJson["pubkey"].get<string>();
                 }
-                order.buyer = buyer;
-                order.creator = creator;
+                order.maker = maker;
+                order.taker = taker;
                 orders.push_back(order);
             }
         }

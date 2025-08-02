@@ -3,13 +3,13 @@ using namespace std;
 
 MarketWindow::MarketWindow(vector<Bip32Wallet*> wallets, QWidget *parent) : QWidget(parent), wallets(wallets) {
 
-    string rpc_url = "http://localhost:5000";
+    string rpc_url = "http://localhost:8000";
     json_curl_client = new CurlRPC(rpc_url, "", "");
     vector<Order> orders = json_curl_client->get_all_orders();
     vector<Order> my_orders;
     for(const Order& order : orders){
         for(const auto& wallet : wallets){
-            if(order.creator.pubkey == Bip32Wallet::key_to_string(wallet->get_master_key(), false).toStdString()){
+            if(order.maker.pubkey == Bip32Wallet::key_to_string(wallet->get_master_key(), false).toStdString()){
                 my_orders.push_back(order);
                 break;
             }

@@ -15,6 +15,7 @@
 #include "bip32wallet.h"
 #include "curlrpc.h"
 #include <wally_transaction.h>
+#include <wally_address.h>
 
 class SendWindow : public QWidget {
     Q_OBJECT

@@ -4,7 +4,7 @@
 
 NewOrder::NewOrder(const string& product, const vector<Bip32Wallet*> wallets, QWidget *parent) : QWidget(parent), product(product) {
 
-    string rpc_url = "http://localhost:5000";
+    string rpc_url = "http://localhost:8000";
     json_curl_client = new CurlRPC(rpc_url, "", "");
 
     this->resize(400, 500);
@@ -104,7 +104,7 @@ NewOrder::NewOrder(const string& product, const vector<Bip32Wallet*> wallets, QW
 
 NewOrder::NewOrder(const Order& order, const vector<Bip32Wallet*> wallets, QWidget *parent) : QWidget(parent), product(order.product) {
 
-    string rpc_url = "http://localhost:5000";
+    string rpc_url = "http://localhost:8000";
     json_curl_client = new CurlRPC(rpc_url, "", "");
 
     for(const auto& wallet : wallets){

@@ -33,8 +33,8 @@ struct Order {
     string currency;
     string strike;
     string price;
-    Counterpart creator;
-    Counterpart buyer;
+    Counterpart maker;
+    Counterpart taker;
 };
 
 class CurlRPC

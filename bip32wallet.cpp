@@ -125,34 +125,6 @@ void Bip32Wallet::load_from_file() {
         istringstream iss(line);
         string key, value;
 
-        /*if (line.find("Private Key:") != string::npos) {
-            has_private_key = true;
-            size_t pos = line.find("Private Key:") + 13;
-            istringstream keyStream(line.substr(pos));
-            for (size_t i = 0; i < 32; ++i) {
-                int byte;
-                keyStream >> hex >> byte;
-                master_key.priv_key[i] = static_cast<unsigned char>(byte);
-            }
-        } else if (line.find("Public Key:") != string::npos) {
-            has_public_key = true;
-            size_t pos = line.find("Public Key:") + 12;
-            istringstream keyStream(line.substr(pos));
-            for (size_t i = 0; i < 33; ++i) {
-                int byte;
-                keyStream >> hex >> byte;
-                master_key.pub_key[i] = static_cast<unsigned char>(byte);
-            }
-        } else if (line.find("Chain Code:") != string::npos) {
-            has_chain_code = true;
-            size_t pos = line.find("Chain Code:") + 12;
-            istringstream keyStream(line.substr(pos));
-            for (size_t i = 0; i < 32; ++i) {
-                int byte;
-                keyStream >> hex >> byte;
-                master_key.chain_code[i] = static_cast<unsigned char>(byte);
-            }
-        }*/
         if (line.find("Entropy:") != string::npos) {
             size_t pos = line.find("Entropy:") + 9;
             istringstream keyStream(line.substr(pos));
@@ -187,9 +159,6 @@ void Bip32Wallet::load_from_file() {
     }
 
     file.close();
-    /*if (!has_private_key || !has_public_key || !has_chain_code) {
-        throw runtime_error("Incomplete wallet data in file.");
-    }*/
 }
 
 void Bip32Wallet::derive_next_keys() {
