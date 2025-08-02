@@ -213,6 +213,38 @@ string CurlRPC::take_order(
     return response;
 }
 
+vector<Order> CurlRPC::get_pending_orders(){
+    string json_response = send_request_json("api/contract/pending", "");
+    vector<Order> orders;
+    try {
+        auto json = nlohmann::json::parse(json_response);
+
+        if (json.contains("results")) {
+            for (const auto& orderJson : json["results"]) {
+                Order order = {
+                    orderJson["id"].get<uint32_t>(),
+                    orderJson["status"].get<string>(),
+                    orderJson["way"].get<string>(),
+                    orderJson["product"].get<string>(),
+                    orderJson["underlying"].get<string>(),
+                    orderJson["currency"].get<string>(),
+                    orderJson["strike"].get<string>(),
+                    orderJson["price"].get<string>()
+                };
+                Counterpart maker = {};
+                Counterpart taker = {};
+                order.maker = maker;
+                order.taker = taker;
+                orders.push_back(order);
+            }
+        }
+    } catch (const exception& e) {
+        cerr << "Erreur lors du parsing JSON: " << e.what() << endl;
+    }
+
+    return orders;
+}
+
 vector<Order> CurlRPC::get_all_orders(){
     string json_response = send_request_json("api/contract", "");
     vector<Order> orders;

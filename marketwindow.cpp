@@ -5,9 +5,9 @@ MarketWindow::MarketWindow(vector<Bip32Wallet*> wallets, QWidget *parent) : QWid
 
     string rpc_url = "http://localhost:8000";
     json_curl_client = new CurlRPC(rpc_url, "", "");
-    vector<Order> orders = json_curl_client->get_all_orders();
+    vector<Order> pending_orders = json_curl_client->get_pending_orders();
     vector<Order> my_orders;
-    for(const Order& order : orders){
+    for(const Order& order : pending_orders){
         for(const auto& wallet : wallets){
             if(order.maker.pubkey == Bip32Wallet::key_to_string(wallet->get_master_key(), false).toStdString()){
                 my_orders.push_back(order);
@@ -20,10 +20,10 @@ MarketWindow::MarketWindow(vector<Bip32Wallet*> wallets, QWidget *parent) : QWid
 
     QVBoxLayout *layout = new QVBoxLayout(this);
 
-    layout->addWidget(new QLabel("Orders", this));
+    layout->addWidget(new QLabel("Pending Orders", this));
 
     QHBoxLayout *order_layout = new QHBoxLayout;
-    QTableWidget *table_order = new QTableWidget(orders.size(), 8, this);
+    QTableWidget *table_order = new QTableWidget(pending_orders.size(), 8, this);
     table_order->setHorizontalHeaderLabels({"ID", "Way", "Product", "Underlying", "Currency", "Strike", "Price", "Status"});
     table_order->setSelectionBehavior(QAbstractItemView::SelectRows);
     table_order->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -46,7 +46,7 @@ MarketWindow::MarketWindow(vector<Bip32Wallet*> wallets, QWidget *parent) : QWid
     layout->addLayout(my_order_layout);
 
     int row = 0;
-    for(const auto& order : orders){
+    for(const auto& order : pending_orders){
         table_order->setItem(row, 0, new QTableWidgetItem(QString::number(order.id)));
         table_order->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(order.way)));
         table_order->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(order.product)));

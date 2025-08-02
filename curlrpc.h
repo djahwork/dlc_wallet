@@ -76,6 +76,7 @@ public:
         int contract_id, const string& pubkey, const string& collateral,
         const string& txid, const string& fund_address, const string& change_address
     );
+    vector<Order> get_pending_orders();
     vector<Order> get_all_orders();
 };
 
