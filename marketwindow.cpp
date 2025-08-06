@@ -45,30 +45,26 @@ MarketWindow::MarketWindow(vector<Bip32Wallet*> wallets, QWidget *parent) : QWid
     my_order_layout->addWidget(table_my_order);
     layout->addLayout(my_order_layout);
 
-    int row = 0;
-    for(const auto& order : pending_orders){
-        table_order->setItem(row, 0, new QTableWidgetItem(QString::number(order.id)));
-        table_order->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(order.way)));
-        table_order->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(order.product)));
-        table_order->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(order.underlying)));
-        table_order->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(order.currency)));
-        table_order->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(order.strike)));
-        table_order->setItem(row, 6, new QTableWidgetItem(QString::fromStdString(order.price)));
-        table_order->setItem(row, 7, new QTableWidgetItem(QString::fromStdString(order.status)));
-        ++row;
+    for(int row = 0; i < pending_orders.size(); i++){
+        table_order->setItem(row, 0, new QTableWidgetItem(QString::number(pending_orders[row].id)));
+        table_order->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(pending_orders[row].way)));
+        table_order->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(pending_orders[row].product)));
+        table_order->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(pending_orders[row].underlying)));
+        table_order->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(pending_orders[row].currency)));
+        table_order->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(pending_orders[row].strike)));
+        table_order->setItem(row, 6, new QTableWidgetItem(QString::fromStdString(pending_orders[row].price)));
+        table_order->setItem(row, 7, new QTableWidgetItem(QString::fromStdString(pending_orders[row].status)));
     }
 
-    row = 0;
-    for(const auto& order : my_orders){
-        table_my_order->setItem(row, 0, new QTableWidgetItem(QString::number(order.id)));
-        table_my_order->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(order.way)));
-        table_my_order->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(order.product)));
-        table_my_order->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(order.underlying)));
-        table_my_order->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(order.currency)));
-        table_my_order->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(order.strike)));
-        table_my_order->setItem(row, 6, new QTableWidgetItem(QString::fromStdString(order.price)));
-        table_my_order->setItem(row, 7, new QTableWidgetItem(QString::fromStdString(order.status)));
-        ++row;
+    for(int row = 0; i < my_orders.size(); i++){
+        table_my_order->setItem(row, 0, new QTableWidgetItem(QString::number(my_orders[row].id)));
+        table_my_order->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(my_orders[row].way)));
+        table_my_order->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(my_orders[row].product)));
+        table_my_order->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(my_orders[row].underlying)));
+        table_my_order->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(my_orders[row].currency)));
+        table_my_order->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(my_orders[row].strike)));
+        table_my_order->setItem(row, 6, new QTableWidgetItem(QString::fromStdString(my_orders[row].price)));
+        table_my_order->setItem(row, 7, new QTableWidgetItem(QString::fromStdString(my_orders[row].status)));
     }
 
     connect(take, &QPushButton::clicked, this, [this, table_order](){
